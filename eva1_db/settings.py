@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 import os #añadi os
 from pathlib import Path
 
-from proyecto_web.settings import TEMPLATES_DIR
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,7 +77,7 @@ WSGI_APPLICATION = 'eva1_db.wsgi.application'
 DATABASES = { #Toda la configuración del database
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eva1_db',
+        'NAME': 'evaluacion_1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
