@@ -22,6 +22,6 @@ from paginas_app import views
 urlpatterns = [
     path('', views.mostrar_home),
     path('acerca/', views.mostrar_acerca),
-    path('acerca/', views.mostrar_servicio),
+    path('servicio/', views.mostrar_servicio),
     path('admin/', admin.site.urls),
 ]
