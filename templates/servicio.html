@@ -1,8 +1,232 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicio — Pliego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE7DC;
+    --paper-2:#E3DAC5;
+    --ink:#211D1A;
+    --ink-soft:#5B5145;
+    --brick:#7A3E2B;
+    --olive:#4B5D46;
+    --line:#C7BBA1;
+  }
 
-{% block content %}
-<section class="servicio">
-  <h1>{{ servicio.nombre }}</h1>
-  <p>Valor: ${{ servicio.valor }}</p>
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 3px);
+    z-index:0;
+  }
+
+  a{ color:inherit; }
+
+  h1, h2, h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- nav ---------- */
+  header{ padding:28px 0 0; }
+  nav.wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+    max-width:920px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+  }
+  .navlinks{ display:flex; gap:28px; font-size:15px; }
+  .navlinks a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+  }
+  .navlinks a.active{ color:var(--ink); border-bottom-color:var(--brick); }
+  .navlinks a:hover{ color:var(--ink); }
+
+  /* ---------- intro ---------- */
+  .intro{
+    padding:70px 0 10px;
+    text-align:center;
+  }
+  .kicker{
+    font-size:15px;
+    color:var(--brick);
+    margin-bottom:14px;
+  }
+  .intro h1{
+    font-size:clamp(30px, 5vw, 42px);
+    line-height:1.15;
+  }
+  .intro .lede{
+    margin:20px auto 0;
+    max-width:32em;
+    color:var(--ink-soft);
+    font-size:17px;
+  }
+
+  /* ---------- boleta (tarjeta del servicio) ---------- */
+  .boleta-section{
+    padding:50px 0 70px;
+  }
+  .boleta{
+    position:relative;
+    background:var(--paper-2);
+    padding:44px 44px 38px;
+    overflow:hidden;
+  }
+  .boleta .fold{
+    position:absolute;
+    top:0; right:0;
+    width:0; height:0;
+    border-style:solid;
+    border-width:0 46px 46px 0;
+    border-color:transparent var(--brick) transparent transparent;
+  }
+  .boleta .eyebrow{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .boleta h2{
+    margin-top:10px;
+    font-size:30px;
+    max-width:14em;
+  }
+  .boleta .divisor{
+    margin:28px 0;
+    border-top:1px dashed var(--line);
+  }
+  .boleta .fila{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .boleta .fila .label{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .boleta .fila .valor{
+    font-family:'Fraunces', serif;
+    font-size:34px;
+    color:var(--brick);
+  }
+  .boleta .fila .valor::before{
+    content:"$";
+    font-size:20px;
+    margin-right:2px;
+  }
+
+  .nota{
+    margin-top:26px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+    max-width:34em;
+  }
+
+  .cta-mini{
+    margin-top:34px;
+    text-align:center;
+  }
+  .cta-mini a{
+    display:inline-block;
+    text-decoration:none;
+    color:var(--paper);
+    background:var(--ink);
+    padding:14px 26px;
+    font-size:15px;
+  }
+
+  footer{
+    padding:30px 0 50px;
+    color:var(--ink-soft);
+    font-size:14px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:640px){
+    .boleta{ padding:34px 26px; }
+    .boleta .fila{ flex-direction:column; gap:6px; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Pliego</div>
+    <div class="navlinks">
+      <a href="/">Inicio</a>
+      <a href="/acerca-de/">Acerca de</a>
+      <a href="/servicios/" class="active">Servicio</a>
+    </div>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="kicker">Servicio</div>
+    <h1>Cada trabajo se cotiza según el oficio que lleva.</h1>
+    <p class="lede">Esto es lo que ofrecemos, con su valor de referencia.</p>
+  </div>
 </section>
-{% endblock %}
+
+<section class="boleta-section">
+  <div class="wrap">
+    <div class="boleta">
+      <div class="fold"></div>
+      <div class="eyebrow">Detalle del servicio</div>
+      <h2>{{ servicio.nombre }}</h2>
+      <div class="divisor"></div>
+      <div class="fila">
+        <span class="label">Valor</span>
+        <span class="valor">{{ servicio.valor }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© Pliego, taller de papel y encuadernación.</div>
+</footer>
+
+</body>
+</html>
