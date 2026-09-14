@@ -7,9 +7,10 @@ def mostrar_home(request):
 def mostrar_acerca(request):
     return render(request, 'acerca-de.html')
 
+
 def mostrar_servicio(request):
-    datos = {
-        'nombre': 'Lavado de Vehiculos',
-        'valor': 10000
+    servicio = {
+        "nombre": "Lavado de vehículos",
+        "valor": 10000
     }
-    return render(request, 'acerca-de.html', datos)
+    return render(request, 'servicio.html', {"servicio": servicio})
