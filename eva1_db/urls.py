@@ -20,8 +20,8 @@ from django.urls import path
 from paginas_app import views
 
 urlpatterns = [
-    path('', mostrar_home),
-    path('acerca/', mostrar_acerca),
+    path('', views.mostrar_home),
+    path('acerca/', views.mostrar_acerca),
     path('acerca/', views.mostrar_servicio),
     path('admin/', admin.site.urls),
 ]
