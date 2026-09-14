@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pliego — taller de papel y encuadernación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE7DC;
+    --paper-2:#E3DAC5;
+    --ink:#211D1A;
+    --ink-soft:#5B5145;
+    --brick:#7A3E2B;
+    --olive:#4B5D46;
+    --line:#C7BBA1;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 3px);
+    z-index:0;
+  }
+
+  a{ color:inherit; }
+
+  h1, h2, h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    padding:28px 0 0;
+  }
+  nav.wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    font-size:15px;
+  }
+  .navlinks a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+  }
+  .navlinks a.active{
+    color:var(--ink);
+    border-bottom-color:var(--brick);
+  }
+  .navlinks a:hover{ color:var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:76px 0 64px;
+    overflow:hidden;
+  }
+  .fold{
+    position:absolute;
+    top:0; right:0;
+    width:0; height:0;
+    border-style:solid;
+    border-width:0 84px 84px 0;
+    border-color:transparent var(--brick) transparent transparent;
+    opacity:0.9;
+  }
+  .hero h1{
+    font-size:clamp(38px, 6vw, 60px);
+    line-height:1.08;
+    max-width:11.5em;
+    letter-spacing:-0.01em;
+  }
+  .hero .lede{
+    margin-top:26px;
+    max-width:34em;
+    font-size:18px;
+    color:var(--ink-soft);
+  }
+  .hero .lede em{
+    font-style:italic;
+    color:var(--brick);
+  }
+
+  /* ---------- services ---------- */
+  .services{
+    padding:8px 0 56px;
+    border-top:1px solid var(--line);
+  }
+  .services .intro{
+    padding-top:44px;
+    max-width:30em;
+    color:var(--ink-soft);
+  }
+  .service-list{
+    margin-top:34px;
+  }
+  .service{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .service:last-child{ border-bottom:1px solid var(--line); }
+  .service h3{
+    font-size:22px;
+    font-weight:500;
+  }
+  .service p{
+    margin:8px 0 0;
+    max-width:36em;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+
+  /* ---------- obra ---------- */
+  .obra{
+    padding:56px 0 60px;
+  }
+  .obra h2{
+    font-size:28px;
+  }
+  .obra-list{
+    margin-top:30px;
+    display:grid;
+    gap:2px;
+  }
+  .obra-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:16px 22px;
+    background:var(--paper-2);
+  }
+  .obra-item .titulo{
+    font-family:'Fraunces', serif;
+    font-size:19px;
+  }
+  .obra-item .meta{
+    color:var(--ink-soft);
+    font-size:14px;
+    white-space:nowrap;
+    margin-left:20px;
+  }
+
+  /* ---------- cta ---------- */
+  .cta{
+    padding:64px 0 60px;
+    border-top:1px solid var(--line);
+  }
+  .cta-box{
+    background:var(--ink);
+    color:var(--paper);
+    padding:48px 44px;
+    position:relative;
+  }
+  .cta-box h2{
+    font-size:30px;
+    max-width:14em;
+    line-height:1.2;
+  }
+  .cta-box p{
+    margin-top:14px;
+    color:#C9C1B3;
+    max-width:28em;
+  }
+  .cta-box .direccion{
+    margin-top:26px;
+    font-size:15px;
+    color:#C9C1B3;
+  }
+  .cta-box a.email{
+    display:inline-block;
+    margin-top:22px;
+    color:var(--paper);
+    text-decoration:none;
+    border-bottom:1px solid var(--brick);
+    padding-bottom:3px;
+    font-size:16px;
+  }
+
+  footer{
+    padding:30px 0 50px;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+
+  @media (max-width:640px){
+    .service{ grid-template-columns:1fr; gap:6px; }
+    .cta-box{ padding:34px 26px; }
+    .obra-item{ flex-direction:column; align-items:flex-start; gap:4px; }
+    .obra-item .meta{ margin-left:0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Pliego</div>
+    <div class="navlinks">
+      <a href="inicio.html" class="active">Inicio</a>
+      <a href="acerca-de.html">Acerca de</a>
+      <a href="mailto:hola@pliego.taller">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="fold"></div>
+  <div class="wrap">
+    <h1>Un libro empieza siendo un pliego de papel doblado.</h1>
+    <p class="lede">Somos un taller pequeño donde se hace papel a mano y se encuadernan libros uno por uno. Nada sale de aquí en <em>tirada larga</em>; todo se dobla, se cose y se prensa con las manos de alguien que lo conoce.</p>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <p class="intro">Trabajamos por encargo y también enseñamos el oficio. Esto es lo que hacemos:</p>
+    <div class="service-list">
+      <div class="service">
+        <h3>Encuadernación</h3>
+        <p>Costura copta, cartoné y encuadernación en piel, hecha a mano para libros de autor, agendas y ediciones únicas.</p>
+      </div>
+      <div class="service">
+        <h3>Papel hecho a mano</h3>
+        <p>Fabricamos hojas y láminas a partir de fibras de algodón y de trapo, para artistas, estudios y proyectos editoriales.</p>
+      </div>
+      <div class="service">
+        <h3>Ediciones especiales</h3>
+        <p>Tiradas cortas y numeradas, pensadas junto al autor: desde el papel hasta la tapa final.</p>
+      </div>
+      <div class="service">
+        <h3>Talleres</h3>
+        <p>Clases de encuadernación y papel para quienes quieren aprender el oficio desde cero, en grupos pequeños.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="obra">
+  <div class="wrap">
+    <h2>Algo de lo que hemos hecho</h2>
+    <div class="obra-list">
+      <div class="obra-item">
+        <span class="titulo">Cuadernos de campo, edición Sur</span>
+        <span class="meta">Papel de algodón, tapa dura — 2024</span>
+      </div>
+      <div class="obra-item">
+        <span class="titulo">Poemario "Ceniza y sal"</span>
+        <span class="meta">Costura copta, 80 ejemplares — 2023</span>
+      </div>
+      <div class="obra-item">
+        <span class="titulo">Archivo fotográfico familiar</span>
+        <span class="meta">Restauración y encuadernación en piel — 2022</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Ven a ver el taller y a tocar el papel.</h2>
+      <p>Recibimos visitas con cita previa. Trae un proyecto o simplemente curiosidad por el oficio.</p>
+      <div class="direccion">Taller Pliego — Barrio Yungay</div>
+      <a class="email" href="mailto:hola@pliego.taller">hola@pliego.taller</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© Pliego, taller de papel y encuadernación.</div>
+</footer>
+
+</body>
+</html>

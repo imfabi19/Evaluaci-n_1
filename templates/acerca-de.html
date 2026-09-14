@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acerca de — Pliego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE7DC;
+    --paper-2:#E3DAC5;
+    --ink:#211D1A;
+    --ink-soft:#5B5145;
+    --brick:#7A3E2B;
+    --olive:#4B5D46;
+    --line:#C7BBA1;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 3px);
+    z-index:0;
+  }
+
+  a{ color:inherit; }
+
+  h1, h2, h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- nav ---------- */
+  header{ padding:28px 0 0; }
+  nav.wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+    max-width:920px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+  }
+  .navlinks{ display:flex; gap:28px; font-size:15px; }
+  .navlinks a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+  }
+  .navlinks a.active{ color:var(--ink); border-bottom-color:var(--brick); }
+  .navlinks a:hover{ color:var(--ink); }
+
+  /* ---------- intro ---------- */
+  .intro{
+    padding:70px 0 10px;
+    text-align:center;
+  }
+  .kicker{
+    font-size:15px;
+    color:var(--brick);
+    margin-bottom:14px;
+  }
+  .intro h1{
+    font-size:clamp(32px, 5vw, 46px);
+    line-height:1.15;
+  }
+  .intro .lede{
+    margin:22px auto 0;
+    max-width:34em;
+    color:var(--ink-soft);
+    font-size:18px;
+  }
+
+  /* ---------- quote ---------- */
+  .quote{
+    margin:56px 0;
+    padding:38px 40px;
+    background:var(--paper-2);
+    text-align:right;
+  }
+  .quote p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:24px;
+    line-height:1.4;
+    color:var(--brick);
+    margin:0;
+  }
+  .quote span{
+    display:block;
+    margin-top:14px;
+    font-family:'Work Sans', sans-serif;
+    font-style:normal;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- historia (timeline) ---------- */
+  .historia{
+    padding:20px 0 10px;
+  }
+  .historia h2{
+    font-size:26px;
+    text-align:center;
+    margin-bottom:40px;
+  }
+  .timeline{
+    border-left:1px solid var(--line);
+    margin-left:18px;
+  }
+  .tl-item{
+    position:relative;
+    padding:0 0 40px 34px;
+  }
+  .tl-item:last-child{ padding-bottom:4px; }
+  .tl-item .num{
+    position:absolute;
+    left:-19px;
+    top:-2px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Fraunces', serif;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .tl-item .year{
+    font-size:14px;
+    color:var(--brick);
+    margin-bottom:6px;
+  }
+  .tl-item h3{ font-size:19px; }
+  .tl-item p{
+    margin:8px 0 0;
+    color:var(--ink-soft);
+    max-width:32em;
+    font-size:15.5px;
+  }
+
+  /* ---------- valores ---------- */
+  .valores{
+    padding:64px 0 20px;
+    border-top:1px solid var(--line);
+    margin-top:60px;
+  }
+  .valores h2{
+    font-size:26px;
+    text-align:center;
+    margin-bottom:36px;
+  }
+  .valor{
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .valor:last-child{ border-bottom:1px solid var(--line); }
+  .valor h3{
+    font-size:18px;
+    color:var(--olive);
+  }
+  .valor p{
+    margin:8px 0 0;
+    color:var(--ink-soft);
+    font-size:15.5px;
+    max-width:34em;
+  }
+
+  /* ---------- equipo ---------- */
+  .equipo{
+    padding:56px 0 60px;
+    text-align:center;
+  }
+  .equipo p{
+    color:var(--ink-soft);
+    max-width:32em;
+    margin:0 auto;
+  }
+  .equipo a{
+    color:var(--ink);
+    border-bottom:1px solid var(--brick);
+    text-decoration:none;
+    padding-bottom:2px;
+  }
+
+  footer{
+    padding:30px 0 50px;
+    color:var(--ink-soft);
+    font-size:14px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:640px){
+    .quote{ padding:28px 24px; text-align:left; }
+    .intro{ padding:56px 0 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Pliego</div>
+    <div class="navlinks">
+      <a href="inicio.html">Inicio</a>
+      <a href="acerca-de.html" class="active">Acerca de</a>
+      <a href="mailto:hola@pliego.taller">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="kicker">Acerca de Pliego</div>
+    <h1>Un taller que sigue haciendo las cosas a mano porque así se hacen mejor.</h1>
+    <p class="lede">Pliego nació de la idea simple de que un libro bien hecho dura generaciones. Todavía cortamos, doblamos y cosemos cada ejemplar nosotros mismos.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="quote">
+    <p>"El papel se dobla una vez y ya sabe dónde quiere ir."</p>
+    <span>— algo que repetimos mucho en el taller</span>
+  </div>
+</div>
+
+<section class="historia">
+  <div class="wrap">
+    <h2>Cómo llegamos hasta aquí</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="num">1</div>
+        <div class="year">2014</div>
+        <h3>Un banco de trabajo prestado</h3>
+        <p>Empezamos en un rincón de otro taller, encuadernando cuadernos para amigos y vecinos del barrio.</p>
+      </div>
+      <div class="tl-item">
+        <div class="num">2</div>
+        <div class="year">2017</div>
+        <h3>Un espacio propio</h3>
+        <p>Nos mudamos a un local más grande en Yungay, con prensa propia y sitio para recibir encargos más grandes.</p>
+      </div>
+      <div class="tl-item">
+        <div class="num">3</div>
+        <div class="year">2020</div>
+        <h3>Empezamos a hacer papel</h3>
+        <p>Aprendimos el oficio de la fabricación de papel a mano, y dejamos de depender solo de proveedores externos.</p>
+      </div>
+      <div class="tl-item">
+        <div class="num">4</div>
+        <div class="year">2023</div>
+        <h3>Abrimos los talleres</h3>
+        <p>Empezamos a enseñar lo que sabemos, en grupos pequeños, para que el oficio no se quede solo entre estas paredes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="valores">
+  <div class="wrap">
+    <h2>Cómo trabajamos</h2>
+    <div class="valor">
+      <h3>Un ejemplar a la vez</h3>
+      <p>No hay producción en serie. Cada libro pasa por las mismas manos, de principio a fin.</p>
+    </div>
+    <div class="valor">
+      <h3>Materiales que duran</h3>
+      <p>Elegimos papeles y telas pensando en que el objeto tenga que sobrevivir décadas, no temporadas.</p>
+    </div>
+    <div class="valor">
+      <h3>El oficio se comparte</h3>
+      <p>Preferimos enseñar lo que sabemos antes que guardarlo como secreto de taller.</p>
+    </div>
+  </div>
+</section>
+
+<section class="equipo">
+  <div class="wrap">
+    <p>Somos un equipo de cuatro personas. Si quieres conocer el taller o proponernos un proyecto, escríbenos a <a href="mailto:hola@pliego.taller">hola@pliego.taller</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© Pliego, taller de papel y encuadernación.</div>
+</footer>
+
+</body>
+</html>
