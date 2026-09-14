@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from paginas_app import mostrar_home, mostrar_acerca
 urlpatterns = [
+    path('', mostrar_home),
+    path('acerca/', mostrar_acerca),
     path('admin/', admin.site.urls),
 ]
