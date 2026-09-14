@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'eva1_db.wsgi.application'
 DATABASES = { #Toda la configuración del database
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'evaluacion_1',
+        'NAME': 'eva1_db',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
